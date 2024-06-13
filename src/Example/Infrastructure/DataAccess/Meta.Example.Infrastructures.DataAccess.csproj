@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Meta.Example.Infrastructures.DataAccess</Title>
+    <PackageDescription>Компоненты работы с доступом к данным.</PackageDescription>
+    <Description>Компоненты работы с доступом к данным.</Description>
+
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Infrastructure\Meta.Common.Infrastructures.DataAccess.csproj" />
+    <ProjectReference Include="..\..\Domain\Meta.Example.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Meta.Example.Hosts.Consumer": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

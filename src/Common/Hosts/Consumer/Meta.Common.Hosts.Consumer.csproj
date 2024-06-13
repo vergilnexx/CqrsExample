@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Title>Meta.Common.Hosts.Consumer</Title>
+    <PackageDescription>Общие компоненты для работы с шиной сообщений.</PackageDescription>
+    <Description>Общие компоненты для работы с шиной сообщений.</Description>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.Extensions.Hosting" />
+    <PackageReference Include="Serilog.AspNetCore" />
+
+    <ProjectReference Include="..\..\Contracts\Meta.Common.Contracts.csproj" />
+    <ProjectReference Include="..\Common\Meta.Common.Hosts.csproj" />
+  </ItemGroup>
+
+</Project>

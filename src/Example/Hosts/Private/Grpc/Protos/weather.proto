@@ -1,0 +1,21 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Meta.Example.Private.Hosts.Grpc.Protos";
+
+package weather;
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+// Сервис работы с прогнозами погоды.
+service WeatherForecastService {
+    // Удаляет прогноз на конкретную дату.
+    rpc Delete (DeleteForecastRequest) returns (DeleteForecastResponse){
+        option (google.api.http) = { delete: "/api/v1/forecast/weather/{date}" };
+    }
+}
+message DeleteForecastRequest {
+    // Дата удаляемого прогноза. Пример: 2024-06-11T00:00:00Z
+    google.protobuf.Timestamp date = 1;
+}
+message DeleteForecastResponse {
+}

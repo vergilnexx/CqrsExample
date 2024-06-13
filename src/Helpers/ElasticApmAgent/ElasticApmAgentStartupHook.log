@@ -1,0 +1,79 @@
+[2024-06-07 08:24:13Z] Check if System.Diagnostics.DiagnosticSource is loaded
+[2024-06-07 08:24:13Z] Assemblies loaded:
+System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e
+Meta.Example.Private.Hosts.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+ElasticApmAgentStartupHook, Version=1.27.0.0, Culture=neutral, PublicKeyToken=ae7400d2c189cf22
+netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
+System.Collections, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Linq, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.Loader, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Text.RegularExpressions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.InteropServices, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Console, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Threading, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+Microsoft.Win32.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+[2024-06-07 08:24:13Z] No System.Diagnostics.DiagnosticSource loaded. Load using AssemblyLoadContext.Default
+[2024-06-07 08:24:13Z] System.Diagnostics.DiagnosticSource 8.0.0.0 loaded
+[2024-06-07 08:24:13Z] Check if System.Diagnostics.DiagnosticSource is loaded
+[2024-06-07 08:24:13Z] Get Elastic.Apm.StartupHook.Loader.Loader type
+[2024-06-07 08:24:13Z] Assemblies loaded:
+System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e
+Meta.Example.Public.Hosts.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+ElasticApmAgentStartupHook, Version=1.27.0.0, Culture=neutral, PublicKeyToken=ae7400d2c189cf22
+netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
+System.Collections, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Linq, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.Loader, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Text.RegularExpressions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.InteropServices, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Console, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Threading, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+Microsoft.Win32.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+[2024-06-07 08:24:13Z] Invoke Elastic.Apm.StartupHook.Loader.Loader.Initialize method
+blyLoadContext.Default
+[2024-06-07 08:24:13Z] System.Diagnostics.DiagnosticSource 8.0.0.0 loaded
+[2024-06-07 08:24:13Z] Get Elastic.Apm.StartupHook.Loader.Loader type
+ loaded
+[2024-06-07 08:24:13Z] Check if System.Diagnostics.DiagnosticSource is loaded
+thod
+[2024-06-07 08:24:14Z] Assemblies loaded:
+System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e
+Meta.Example.Private.Hosts.Grpc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+ElasticApmAgentStartupHook, Version=1.27.0.0, Culture=neutral, PublicKeyToken=ae7400d2c189cf22
+netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
+System.Collections, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Linq, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.Loader, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Text.RegularExpressions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.InteropServices, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Console, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Threading, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+Microsoft.Win32.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+[2024-06-07 08:24:14Z] Invoke Elastic.Apm.StartupHook.Loader.Loader.Initialize method
+[2024-06-07 08:24:14Z] Assemblies loaded:
+System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e
+Meta.Security.Public.Hosts.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+ElasticApmAgentStartupHook, Version=1.27.0.0, Culture=neutral, PublicKeyToken=ae7400d2c189cf22
+netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
+System.Collections, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Linq, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.Loader, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Text.RegularExpressions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Runtime.InteropServices, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Console, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Threading, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+Microsoft.Win32.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+[2024-06-07 08:24:14Z] No System.Diagnostics.DiagnosticSource loaded. Load using AssemblyLoadContext.Default
+[2024-06-07 08:24:14Z] No System.Diagnostics.DiagnosticSource loaded. Load using AssemblyLoadContext.Default
+[2024-06-07 08:24:14Z] System.Diagnostics.DiagnosticSource 8.0.0.0 loaded
+[2024-06-07 08:24:14Z] System.Diagnostics.DiagnosticSource 8.0.0.0 loaded
+[2024-06-07 08:24:14Z] Get Elastic.Apm.StartupHook.Loader.Loader type
+[2024-06-07 08:24:14Z] Get Elastic.Apm.StartupHook.Loader.Loader type
+[2024-06-07 08:24:14Z] Get Elastic.Apm.StartupHook.Loader.Loader.Initialize method
+[2024-06-07 08:24:14Z] Get Elastic.Apm.StartupHook.Loader.Loader.Initialize method
+od
+[2024-06-07 08:24:14Z] Invoke Elastic.Apm.StartupHook.Loader.Loader.Initialize method

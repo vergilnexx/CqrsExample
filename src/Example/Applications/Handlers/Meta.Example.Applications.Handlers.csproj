@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Meta.Example.Applications.Handlers</Title>
+    <PackageDescription>Компоненты работы с обработчиками запросов.</PackageDescription>
+    <Description>Компоненты работы с обработчиками запросов.</Description>
+
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="MediatR" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Applications\Handlers\Meta.Common.Applications.Handlers.csproj" />
+    <ProjectReference Include="..\..\..\Common\Contracts\Meta.Common.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Common\Cqrs\Meta.Common.Cqrs.csproj" />
+    <ProjectReference Include="..\..\..\Common\Hosts\Consumer\Meta.Common.Hosts.Consumer.csproj" />
+    <ProjectReference Include="..\..\Contracts\Meta.Example.Contracts.csproj" />
+    <ProjectReference Include="..\AppServices\Meta.Example.Applications.AppServices.csproj" />
+  </ItemGroup>
+
+</Project>

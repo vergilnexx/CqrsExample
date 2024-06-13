@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Meta.Example.Applications.AppServices</Title>
+    <PackageDescription>Компоненты работы с сервисами.</PackageDescription>
+    <Description>Компоненты работы с сервисами.</Description>
+
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Applications\AppServices\Meta.Common.Applications.AppServices.csproj" />
+    <ProjectReference Include="..\..\..\Common\Contracts\Meta.Common.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Common\Infrastructure\Meta.Common.Infrastructures.DataAccess.csproj" />
+    <ProjectReference Include="..\..\Clients\Meta.Example.Clients.csproj" />
+    <ProjectReference Include="..\..\Contracts\Meta.Example.Contracts.csproj" />
+    <ProjectReference Include="..\..\Domain\Meta.Example.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

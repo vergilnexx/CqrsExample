@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Meta.Example.Hosts.Migrations": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

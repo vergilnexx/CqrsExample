@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <Title>Meta.Example.Private.Hosts.Grpc</Title>
+    <PackageDescription>Компоненты работы с сервисом через Grpc</PackageDescription>
+    <Description>Компоненты работы с сервисом через Grpc</Description>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="Grpc.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Common\Hosts\Grpc\Meta.Common.Hosts.Grpc.csproj" />
+    <ProjectReference Include="..\..\..\Applications\Handlers\Meta.Example.Applications.Handlers.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\DataAccess\Meta.Example.Infrastructures.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\weather.proto" GrpcServices="Server" />
+  </ItemGroup>
+</Project>

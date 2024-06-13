@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Meta.Example.Domain</Title>
+    <PackageDescription>Доменные компоненты</PackageDescription>
+    <Description>Доменные компоненты</Description>
+
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Domain\Meta.Common.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

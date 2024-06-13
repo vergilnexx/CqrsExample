@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Meta.Common.Hosts.Grpc</Title>
+    <PackageDescription>Общие компоненты для работы через Grpc.</PackageDescription>
+    <Description>Общие компоненты для работы через Grpc.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Grpc.Swagger" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+    <PackageReference Include="Grpc.AspNetCore.HealthChecks" />
+    <PackageReference Include="Grpc.AspNetCore" />
+    <PackageReference Include="Google.Protobuf" />
+    <PackageReference Include="Grpc.Tools" />
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Sinks.Console" />
+    <PackageReference Include="Serilog.Sinks.Elasticsearch" />    
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Meta.Common.Hosts.csproj" />
+  </ItemGroup>
+
+</Project>

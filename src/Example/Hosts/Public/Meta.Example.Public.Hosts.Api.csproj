@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <Title>Meta.Example.Public.Hosts.Api</Title>
+    <PackageDescription>Компоненты работы с сервисом через открытый API</PackageDescription>
+    <Description>Компоненты работы с сервисом через открытый API</Description>
+    
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Applications\Handlers\Meta.Common.Applications.Handlers.csproj" />
+    <ProjectReference Include="..\..\..\Common\Cqrs\Meta.Common.Cqrs.csproj" />
+    <ProjectReference Include="..\..\..\Common\Hosts\Api\Meta.Common.Hosts.Api.csproj" />
+    <ProjectReference Include="..\..\Applications\Handlers\Meta.Example.Applications.Handlers.csproj" />
+    <ProjectReference Include="..\..\Domain\Meta.Example.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\DataAccess\Meta.Example.Infrastructures.DataAccess.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+</Project>

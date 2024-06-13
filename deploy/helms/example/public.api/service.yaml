@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-public-api
+spec:
+  selector:
+    app: example-public-api
+  ports:
+    - protocol: TCP
+      port: 5101
+      targetPort: 8080
+      name: http
+  type: LoadBalancer

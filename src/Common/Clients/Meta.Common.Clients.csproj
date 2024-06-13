@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Meta.Common.Clients</Title>
+    <PackageDescription>Общие компоненты работы с клиентами.</PackageDescription>
+    <Description>Общие компоненты работы с клиентами.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.Net.Client" />
+    <PackageReference Include="Grpc.Net.ClientFactory" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\Meta.Common.Contracts.csproj" />
+  </ItemGroup>
+</Project>

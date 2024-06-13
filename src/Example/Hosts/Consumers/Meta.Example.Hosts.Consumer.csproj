@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Meta.Example.Hosts.Consumer</Title>
+    <PackageDescription>Компоненты для взаимодействия с RabbitMQ</PackageDescription>
+    <Description>Компоненты для взаимодействия с RabbitMQ</Description>
+    <OutputType>Exe</OutputType>
+
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.Docker.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Sinks.Console" />
+    <PackageReference Include="Serilog.Sinks.Elasticsearch" />
+    <PackageReference Include="MassTransit" />
+    <PackageReference Include="MassTransit.RabbitMQ" />
+    
+    <ProjectReference Include="..\..\..\Common\Hosts\Consumer\Meta.Common.Hosts.Consumer.csproj" />
+    <ProjectReference Include="..\..\Clients\Meta.Example.Clients.csproj" />
+    <ProjectReference Include="..\..\Contracts\Meta.Example.Contracts.csproj" />
+  </ItemGroup>
+</Project>

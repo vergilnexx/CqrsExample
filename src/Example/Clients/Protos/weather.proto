@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Meta.Example.Private.Hosts.Grpc.Protos";
+
+package weather;
+import "google/protobuf/timestamp.proto";
+
+// Сервис работы с прогнозами погоды.
+service WeatherForecastService {
+    // Удаляет прогноз на конкретную дату.
+    rpc Delete (DeleteForecastRequest) returns (DeleteForecastResponse){
+    }
+}
+message DeleteForecastRequest {
+    // Дата удаляемого прогноза.
+    google.protobuf.Timestamp date = 1;
+}
+message DeleteForecastResponse {
+}

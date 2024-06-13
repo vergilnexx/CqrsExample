@@ -1,0 +1,33 @@
+{
+  "messageId": "94400000-5eab-e0d5-891b-08dc74f1874c",
+  "requestId": null,
+  "correlationId": "6d47f7d2-4125-4a4c-83ad-ab616fa8bb7c",
+  "conversationId": "94400000-5eab-e0d5-78a9-08dc74f1874d",
+  "initiatorId": null,
+  "sourceAddress": "rabbitmq://localhost/Meta/I11_MetaExamplePublicHostsApi_bus_1tyyyyn6ixopm67rbdq8jhmh8t?temporary=true",
+  "destinationAddress": "rabbitmq://localhost/Meta/Meta.Example.Contracts.Forecast.Events.AddedNotification:IWeatherForecastAddedNotificationMessage",
+  "responseAddress": null,
+  "faultAddress": null,
+  "messageType": [
+    "urn:message:Meta.Example.Contracts.Forecast.Events.AddedNotification:IWeatherForecastAddedNotificationMessage",
+    "urn:message:Meta.Common.Contracts.Abstract:IEvent",
+    "urn:message:Meta.Common.Contracts.Abstract:IMessage"
+  ],
+  "message": {
+    "date": "2024-12-15",
+    "correlationId": "6d47f7d2-4125-4a4c-83ad-ab616fa8bb7c"
+  },
+  "expirationTime": null,
+  "sentTime": "2024-05-15T15:13:08.5648155Z",
+  "headers": {},
+  "host": {
+    "machineName": "I11",
+    "processName": "Meta.Example.Public.Hosts.Api",
+    "processId": 16532,
+    "assembly": "Meta.Example.Public.Hosts.Api",
+    "assemblyVersion": "1.0.0.0",
+    "frameworkVersion": "8.0.4",
+    "massTransitVersion": "8.2.1.0",
+    "operatingSystemVersion": "Microsoft Windows NT 10.0.19045.0"
+  }
+}

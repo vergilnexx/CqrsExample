@@ -1,0 +1,28 @@
+@Meta.Public.Hosts_HostAddress = http://localhost:5101
+
+GET {{Meta.Public.Hosts_HostAddress}}/forecast/weather/
+Accept: application/json
+
+###
+
+GET {{Meta.Public.Hosts_HostAddress}}/forecast/weather/03-12-2024
+Accept: application/json
+
+###
+
+POST {{Meta.Public.Hosts_HostAddress}}/forecast/weather
+Accept: application/json
+Content-Type: application/json
+
+{
+  "TemperatureC": 30,
+  "Summary": "Warm",
+  "Date": "2024-03-15"
+}
+
+###
+
+PUT {{Meta.Public.Hosts_HostAddress}}/forecast/weather/03-12-2024/temperature/2
+Accept: application/json
+
+###

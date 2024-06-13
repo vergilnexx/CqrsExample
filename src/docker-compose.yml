@@ -1,0 +1,103 @@
+networks:
+  meta:
+    driver: bridge 
+
+services:
+  example_public_api:
+    container_name: example.public.api
+    image: example_public_api:latest
+    env_file:
+      - .configs/.web.env
+    environment:
+      ELASTIC_APM_SERVICE_NAME: example_public_api
+    build:
+      context: .
+      dockerfile: Example/Hosts/Public/Dockerfile
+    volumes: &volumes
+      - ./Helpers/ElasticApmAgent:/app/ElasticApmAgent
+    restart: always
+    networks:
+      - meta
+    ports:
+      - "5101:80"
+      
+  example_private_api:
+    container_name: example.private.api
+    image: example_private_api:latest
+    env_file:
+      - .configs/.web.env
+    environment:
+      ELASTIC_APM_SERVICE_NAME: example_private_api
+    build:
+      context: .
+      dockerfile: Example/Hosts/Private/Api/Dockerfile
+    volumes: *volumes
+    restart: always
+    networks:
+      - meta
+    ports:
+      - "5100:80"
+      
+  example_private_grpc:
+    container_name: example.private.grpc
+    image: example_private_grpc:latest
+    env_file:
+      - .configs/.web.env
+    environment:
+      ELASTIC_APM_SERVICE_NAME: example_private_grpc
+    build:
+      context: .
+      dockerfile: Example/Hosts/Private/Grpc/Dockerfile
+    volumes: *volumes
+    restart: always
+    networks:
+      - meta
+    ports:
+      - "5102:5102"
+      - "5103:5103"
+      
+  example_consumer:
+    container_name: example.consumer
+    image: example_consumer:latest
+    env_file:
+      - .configs/.console.env
+    environment:
+      ELASTIC_APM_SERVICE_NAME: example_consumer
+    build:
+      context: .
+      dockerfile: Example/Hosts/Consumers/Dockerfile
+    volumes: *volumes
+    restart: always
+    networks:
+      - meta
+          
+  example_migration:
+    container_name: example.migration
+    image: example_migration:latest
+    env_file:
+      - .configs/.console.env
+    environment:
+      ELASTIC_APM_SERVICE_NAME: example_migration
+    build:
+      context: .
+      dockerfile: Example/Hosts/Migrations/Dockerfile
+    volumes: *volumes
+    networks:
+      - meta
+      
+  security_public_api:
+    container_name: security.public.api
+    image: security_public_api:latest
+    env_file:
+      - .configs/.web.env
+    environment:
+      ELASTIC_APM_SERVICE_NAME: security_public_api
+    build:
+      context: .
+      dockerfile: Security/Hosts/Public/Dockerfile
+    volumes: *volumes
+    restart: always
+    networks:
+      - meta
+    ports:
+      - "5111:80"
