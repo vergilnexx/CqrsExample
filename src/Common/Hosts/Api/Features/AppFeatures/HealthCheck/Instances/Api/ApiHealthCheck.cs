@@ -1,6 +1,8 @@
-﻿using Meta.Common.Hosts.Features.AppFeatures.HealthCheck.Base;
+﻿using Amazon.Runtime.Internal.Util;
+using Meta.Common.Hosts.Features.AppFeatures.HealthCheck.Base;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Logging;
 using System.Globalization;
 
 namespace Meta.Common.Hosts.Api.Features.AppFeatures.HealthCheck.Instances.Api
@@ -11,7 +13,7 @@ namespace Meta.Common.Hosts.Api.Features.AppFeatures.HealthCheck.Instances.Api
     /// <param name="_configuration">Конфигурация.</param>
     /// <param name="_httpClientFactory">Фабрика клиентов HTTP.</param>
     /// <param name="_options">Настройки.</param>
-    internal class ApiHealthCheck(IConfiguration _configuration, IHttpClientFactory _httpClientFactory, ApiHealthCheckOptions _options) : IHealthCheck
+    internal class ApiHealthCheck(IConfiguration _configuration, IHttpClientFactory _httpClientFactory, ApiHealthCheckOptions _options, ILogger<ApiHealthCheck> _logger) : IHealthCheck
     {
         /// <summary>
         /// Проверка на работоспособность.
@@ -43,15 +45,24 @@ namespace Meta.Common.Hosts.Api.Features.AppFeatures.HealthCheck.Instances.Api
                 throw new HealthCheckConfigurationException($"URL({url}) из секции '{_options.UrlConfigSection}' имеет невалидный формат для проверки API.");
             }
 
-            using var httpClient = _httpClientFactory.CreateClient();
-            httpClient.Timeout = timeout;
-            var response = await httpClient.GetAsync(url, cancellationToken);
-            if (response.IsSuccessStatusCode)
+            HttpResponseMessage? response = null;
+            try
+            {
+                using var httpClient = _httpClientFactory.CreateClient();
+                httpClient.Timeout = timeout;
+                response = await httpClient.GetAsync(url, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Произошла ошибка при проверке работоспособности сервиса по URL: {url}", url);
+            }
+
+            if (response?.IsSuccessStatusCode == true)
             {
                 return HealthCheckResult.Healthy();
             }
 
-            return HealthCheckResult.Unhealthy(response.StatusCode.ToString());
+            return HealthCheckResult.Unhealthy(response?.StatusCode.ToString());
         }
     }
 }

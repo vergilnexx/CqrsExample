@@ -1,6 +1,7 @@
 ﻿using MassTransit;
 using Meta.Common.Contracts.Events;
 using Meta.Common.Hosts.RabbitMq.Options;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
@@ -45,18 +46,19 @@ namespace Meta.Common.Hosts.RabbitMq.Registrar.Service
         {
             return Bus.Factory.CreateUsingRabbitMq(busCfg =>
             {
-                var mainHost = _options.Hosts.FirstOrDefault();
+                var hosts = _options.ParsedHosts();
+                var mainHost = hosts.FirstOrDefault();
                 var uri = new Uri($"{Protocol}{mainHost}/{_options.VirtualHost}", UriKind.Absolute);
                 busCfg.Host(uri, hostCfg =>
                 {
                     hostCfg.Username(_options.UserName);
                     hostCfg.Password(_options.Password);
 
-                    if (_options.Hosts.Length > 1)
+                    if (hosts.Length > 1)
                     {
                         hostCfg.UseCluster(c =>
                         {
-                            foreach (var node in _options.Hosts)
+                            foreach (var node in hosts)
                             {
                                 c.Node(node);
                             }

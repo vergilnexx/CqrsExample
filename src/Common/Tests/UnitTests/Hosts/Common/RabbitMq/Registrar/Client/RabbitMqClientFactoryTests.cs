@@ -17,7 +17,7 @@ namespace Meta.Common.Test.UnitTests.Hosts.Common.RabbitMq.Registrar.Client
             var options = new Mock<IOptions<RabbitMqOptions>>();
             var rabbitMqOptions = new RabbitMqOptions()
             {
-                Hosts = ["localhost"],
+                Hosts = "localhost",
                 UserName = "username",
                 Password = "password",
                 VirtualHost = "localhost",
@@ -41,7 +41,7 @@ namespace Meta.Common.Test.UnitTests.Hosts.Common.RabbitMq.Registrar.Client
             var options = new Mock<IOptions<RabbitMqOptions>>();
             var rabbitMqOptions = new RabbitMqOptions()
             {
-                Hosts = ["localhost1", "localhost2"],
+                Hosts = "localhost1,localhost2",
                 UserName = "username",
                 Password = "password",
                 VirtualHost = "localhost",

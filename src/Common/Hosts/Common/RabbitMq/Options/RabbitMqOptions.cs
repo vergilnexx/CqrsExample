@@ -28,7 +28,7 @@
         /// <summary>
         /// Список URI.
         /// </summary>
-        public string[] Hosts { get; set; } = [];
+        public required string Hosts { get; set; }
 
         /// <summary>
         /// Наименование виртуального хоста.
@@ -39,6 +39,15 @@
         /// Порт.
         /// </summary>
         public required string Port { get; set; }
+
+        /// <summary>
+        /// Распарсенные хосты.
+        /// </summary>
+        /// <returns>Распарсенные хосты.</returns>
+        public string[] ParsedHosts()
+        {
+            return Hosts.Split(',', StringSplitOptions.RemoveEmptyEntries);
+        }
 
         /// <summary>
         /// Интервал периодической отправки сигнала для проверки наличия соединения с сервером RabbitMQ.

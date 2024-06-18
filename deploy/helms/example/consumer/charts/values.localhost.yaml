@@ -1,0 +1,44 @@
+replicaCount: 1
+
+image:
+  tag: "latest"
+  repository: "example_consumer"
+  
+resources:
+  limits:
+    cpu: 0.5
+    memory: 1Gi
+  requests:
+    cpu: 0.05
+    memory: 100Mi
+
+deploy:
+  elastic:
+    apm:
+      server: "http://192.168.34.111:8200"
+      agent:
+        volumes: "/host_mnt/c/work/meta/services/src/Helpers/ElasticApmAgent"
+  http:
+    path: "/"
+    port: "80"
+
+settings:
+  features:
+    logging:
+      serilog:
+        minimumLevel: "Debug"
+    elastic:
+      nodes: "http://host.docker.internal:9200"
+     
+  rabbitMq:
+    service:
+      hosts: "host.docker.internal,host.docker.internal"
+      userName: "guest"
+      password: "guest"
+      virtualHost: "Meta"
+      port: "5672"
+         
+  clients:
+    weatherForecast:
+      api:
+        baseUrl: "http://host.docker.internal:5102"

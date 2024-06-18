@@ -1,7 +1,8 @@
 @ECHO OFF
+SET ENVIRONMENT=localhost
 SET NAMESPACE=meta
 SET PROJECT=example-private-grpc
-SET CONFIG_PATH=../../../../src/Example/Hosts/Private/Grpc/appsettings.Docker.json
+SET CONFIG_PATH=../../../../src/Example/Hosts/Private/Grpc/appsettings.json
 
 echo ----------------------------------------
 echo %PROJECT%
@@ -12,12 +13,16 @@ kubectl create namespace meta
 
 kubectl delete -n %NAMESPACE% --now deployment %PROJECT% --cascade=background
 kubectl delete -n %NAMESPACE% service %PROJECT% --cascade=background
+kubectl delete -n %NAMESPACE% service %PROJECT%-http --cascade=background
 kubectl delete -n %NAMESPACE% ingress %PROJECT% --cascade=background
+kubectl delete -n %NAMESPACE% ingress %PROJECT%-http --cascade=background
 kubectl delete -n %NAMESPACE% configmap %PROJECT%-configmap --cascade=background
 
-kubectl apply -n %NAMESPACE% -f deployment.yaml
-kubectl apply -n %NAMESPACE% -f service.yaml
-kubectl apply -n %NAMESPACE% -f ingress.yaml
-kubectl create configmap -n %NAMESPACE% %PROJECT%-configmap --from-file=%CONFIG_PATH%
+kubectl create configmap -n %NAMESPACE% %PROJECT% --from-file=%CONFIG_PATH% --dry-run=client -o yaml > charts/templates/configmap.yaml
+if %ERRORLEVEL% == 1 goto end
 
-if %ERRORLEVEL% == 1 pause
+helm upgrade --install -n %NAMESPACE% -f charts/values.%ENVIRONMENT%.yaml %PROJECT% ./charts
+if %ERRORLEVEL% == 1 goto end
+
+:end
+pause

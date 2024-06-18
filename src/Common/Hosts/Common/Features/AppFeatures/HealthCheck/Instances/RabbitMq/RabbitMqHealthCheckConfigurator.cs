@@ -37,24 +37,30 @@ namespace Meta.Common.Hosts.Features.AppFeatures.HealthCheck.Instances.RabbitMq
                 throw new HealthCheckConfigurationException($"Не удалось получить Timeout из {options.Timeout}");
             }
 
-            var rabbitMqOptions = configuration.GetSection(options.ConfigSection).Get<RabbitMqOptions>();
-            if (rabbitMqOptions == null
-                || string.IsNullOrWhiteSpace(rabbitMqOptions.Hosts.FirstOrDefault())
-                || string.IsNullOrWhiteSpace(rabbitMqOptions.VirtualHost))
+            var rabbitMqOptions = configuration.GetSection(options.ConfigSection).Get<RabbitMqOptions>()
+                                    ?? throw new HealthCheckConfigurationException($"Не удалось получить connectionString из секции '{options.ConfigSection}' для проверки RabbitMq.");
+
+            var hosts = rabbitMqOptions.ParsedHosts();
+            if (hosts.Length == 0)
             {
-                throw new HealthCheckConfigurationException($"Не удалось получить connectionString из секции '{options.ConfigSection}' для проверки RabbitMq.");
+                throw new HealthCheckConfigurationException($"Не задан хост в секции '{options.ConfigSection}' для проверки RabbitMq.");
             }
 
-            var hosts = new HashSet<string>();
-            foreach (var host in rabbitMqOptions.Hosts)
+            if (string.IsNullOrWhiteSpace(rabbitMqOptions.VirtualHost))
             {
-                if (hosts.Contains(host))
+                throw new HealthCheckConfigurationException($"Не задан виртуальный хост в секции '{options.ConfigSection}' для проверки RabbitMq.");
+            }
+
+            var addedHost = new HashSet<string>();
+            foreach (var host in hosts)
+            {
+                if (addedHost.Contains(host))
                 {
                     continue;
                 }
 
                 ConfigureHost(services, checksBuilder, options, host, failureStatus, timeout, rabbitMqOptions);
-                hosts.Add(host);
+                addedHost.Add(host);
             }
         }
 

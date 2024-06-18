@@ -6,18 +6,18 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
   labels:
-    app/name: example-private-api
-    app/instance: example-private-api
-  name: "example-private-api"
+    app/name: {{ $.Chart.Name }}
+    app/instance: {{ $.Release.Name }}
+  name: {{ $.Release.Name }}
 spec:
   rules:
-    - host: localhost
+    - host: {{ $.Values.ingress.host }}
       http:
         paths:
-          - path: /
+          - path: {{ $.Values.deploy.http.path }}
             pathType: Prefix
             backend:
               service:
-                name: "example-private-api"
+                name: {{ $.Release.Name }}
                 port:
-                  number: 5100
+                  number: {{ $.Values.deploy.http.port }}

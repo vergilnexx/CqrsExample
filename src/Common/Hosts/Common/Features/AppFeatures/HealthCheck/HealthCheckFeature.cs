@@ -123,6 +123,7 @@ namespace Meta.Common.Hosts.Features.AppFeatures.HealthCheck
                                         .SelectMany(a => a.GetTypes()
                                                           .Where(t => t.GetInterfaces()
                                                                        .Contains(typeof(IHealthCheckMapConfigurator))));
+            MapHealthCheckService(routeBuilder);
 
             var options = OptionSection.Get<HealthCheckFeatureOptions>();
             var sections = options?.Sections ?? [];
@@ -139,6 +140,7 @@ namespace Meta.Common.Hosts.Features.AppFeatures.HealthCheck
                     continue;
                 }
 
+
                 var configurationName = $"{healthCheckOption.Name}HealthCheckConfigurator";
                 var configuratorType = configuratorTypes.FirstOrDefault(c => c.Name == configurationName);
                 if (configuratorType == null)
@@ -147,7 +149,6 @@ namespace Meta.Common.Hosts.Features.AppFeatures.HealthCheck
                 }
 
                 var configurator = Activator.CreateInstance(configuratorType) as IHealthCheckMapConfigurator;
-                MapHealthCheckService(routeBuilder);
                 configurator?.MapHealthCheckService(routeBuilder);
             }
         }

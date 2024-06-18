@@ -7,21 +7,21 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
   labels:
-    app/name: example-private-grpc-http
-    app/instance: example-private-grpc-http
-  name: "example-private-grpc-http"
+    app/name: {{ $.Chart.Name }}-http
+    app/instance: {{ $.Release.Name }}-http
+  name: "{{ $.Release.Name }}-http"
 spec:
   rules:
-    - host: localhost
+    - host: {{ $.Values.ingress.host }}
       http:
         paths:
-          - path: /
+          - path: {{ $.Values.deploy.http1.path }}
             pathType: Prefix
             backend:
               service:
-                name: "example-private-grpc-http"
+                name: "{{ $.Release.Name }}-http"
                 port:
-                  number: 5103
+                  number: {{ $.Values.deploy.http1.port }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -32,18 +32,18 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
   labels:
-    app/name: example-private-grpc
-    app/instance: example-private-grpc
-  name: "example-private-grpc"
+    app/name: {{ $.Chart.Name }}
+    app/instance: {{ $.Release.Name }}
+  name: {{ $.Release.Name }}
 spec:
   rules:
-    - host: localhost
+    - host: {{ $.Values.ingress.host }}
       http:
         paths:
-          - path: /
+          - path: {{ $.Values.deploy.http2.path }}
             pathType: Prefix
             backend:
               service:
-                name: "example-private-grpc"
+                name: {{ $.Release.Name }}
                 port:
-                  number: 5102
+                  number: {{ $.Values.deploy.http2.port }}

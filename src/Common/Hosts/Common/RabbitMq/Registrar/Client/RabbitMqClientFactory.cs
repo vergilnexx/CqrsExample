@@ -52,7 +52,8 @@ namespace Meta.Common.Hosts.RabbitMq.Registrar.Client
                     {
                         hostCfg.UseCluster(c =>
                         {
-                            foreach (var node in _options.Hosts)
+                            var hosts = _options.ParsedHosts();
+                            foreach (var node in hosts)
                             {
                                 c.Node(node);
                             }

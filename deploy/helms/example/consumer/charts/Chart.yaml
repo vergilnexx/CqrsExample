@@ -1,0 +1,12 @@
+apiVersion: v2
+name: example-consumer
+description: Consumer example service
+type: application
+
+# Версия чарта
+# Фактическая версия подставляется при деплое
+version: 0.1.0
+
+# Версия приложения
+# Фактическая версия подставляется при деплое
+appVersion: 1.0.0

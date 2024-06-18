@@ -2,6 +2,7 @@
 using Meta.Common.Hosts.Features.AppFeatures.HealthCheck.Base;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using Moq.Protected;
@@ -26,7 +27,8 @@ namespace Meta.Common.Tests.UnitTests.Hosts.Api.Features.HealthCheck.Api
                 UrlConfigSection = "section",
                 Timeout = "timeout"
             };
-            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options);
+            var logger = new Mock<ILogger<ApiHealthCheck>>();
+            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options, logger.Object);
             var context = new HealthCheckContext();
 
             // Act
@@ -49,7 +51,8 @@ namespace Meta.Common.Tests.UnitTests.Hosts.Api.Features.HealthCheck.Api
                 Name = "default",
                 UrlConfigSection = string.Empty,
             };
-            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options);
+            var logger = new Mock<ILogger<ApiHealthCheck>>();
+            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options, logger.Object);
             var context = new HealthCheckContext();
 
             // Act
@@ -75,7 +78,8 @@ namespace Meta.Common.Tests.UnitTests.Hosts.Api.Features.HealthCheck.Api
                 Name = "default",
                 UrlConfigSection = "section",
             };
-            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options);
+            var logger = new Mock<ILogger<ApiHealthCheck>>();
+            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options, logger.Object);
             var context = new HealthCheckContext();
 
             // Act
@@ -101,7 +105,8 @@ namespace Meta.Common.Tests.UnitTests.Hosts.Api.Features.HealthCheck.Api
                 Name = "default",
                 UrlConfigSection = "section",
             };
-            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options);
+            var logger = new Mock<ILogger<ApiHealthCheck>>();
+            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options, logger.Object);
             var context = new HealthCheckContext();
 
             // Act
@@ -136,7 +141,8 @@ namespace Meta.Common.Tests.UnitTests.Hosts.Api.Features.HealthCheck.Api
                 Name = "default",
                 UrlConfigSection = "section",
             };
-            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options);
+            var logger = new Mock<ILogger<ApiHealthCheck>>();
+            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options, logger.Object);
             var context = new HealthCheckContext();
 
             // Act
@@ -171,7 +177,8 @@ namespace Meta.Common.Tests.UnitTests.Hosts.Api.Features.HealthCheck.Api
                 Name = "default",
                 UrlConfigSection = "section",
             };
-            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options);
+            var logger = new Mock<ILogger<ApiHealthCheck>>();
+            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options, logger.Object);
             var context = new HealthCheckContext();
 
             // Act
@@ -205,7 +212,8 @@ namespace Meta.Common.Tests.UnitTests.Hosts.Api.Features.HealthCheck.Api
                 Name = "default",
                 UrlConfigSection = "section",
             };
-            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options);
+            var logger = new Mock<ILogger<ApiHealthCheck>>();
+            var check = new ApiHealthCheck(configuration, httpClientFactory.Object, options, logger.Object);
             var context = new HealthCheckContext();
 
             // Act

@@ -1,13 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: example-public-api
+  name: {{ .Release.Name }}
 spec:
   selector:
-    app: example-public-api
+    app: {{ .Release.Name }}
   ports:
-    - protocol: TCP
-      port: 5101
+    - port: {{ .Values.deploy.http.port }}
       targetPort: 8080
-      name: http
   type: LoadBalancer

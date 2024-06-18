@@ -11,7 +11,7 @@ namespace Meta.Common.Test.UnitTests.Hosts.Common.RabbitMq.Options
             // Arrange
             var rabbitMqOptions = new RabbitMqOptions()
             {
-                Hosts = ["localhost"],
+                Hosts = "localhost",
                 VirtualHost = "localhost",
                 Port = "567",
                 UserName = "username",
@@ -31,7 +31,7 @@ namespace Meta.Common.Test.UnitTests.Hosts.Common.RabbitMq.Options
             // Arrange
             var rabbitMqOptions = new RabbitMqOptions()
             {
-                Hosts = ["localhost"],
+                Hosts = "localhost",
                 VirtualHost = "localhost",
                 Port = "567",
                 UserName = "username",

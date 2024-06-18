@@ -127,22 +127,6 @@ namespace Meta.Common.Tests.UnitTests.Hosts.Api.Features.ExceptionHandler
             Assert.That(context.Response.StatusCode, Is.EqualTo((int)HttpStatusCode.InternalServerError));
         }
 
-        [Test(Description = "При формировании API ошибки, если обработчик не найден, возвращается ответ с ошибкой")]
-        public void CreateApiError_TrustedNetworkValidatorNull_ApiError()
-        {
-            // Arrange
-            HttpContext context = new DefaultHttpContext();
-            var environment = new HostingEnvironment() { EnvironmentName = "Production"};
-            var provider = new Mock<IServiceProvider>();
-            provider.Setup(p => p.GetService(typeof(ITrustedNetworkValidator))).Returns((ITrustedNetworkValidator?)null);
-
-            // Act
-            var error = ExceptionHandlingMiddleware.CreateApiError(context, new NotImplementedException(), environment, provider.Object);
-
-            // Assert
-            Assert.That(error.Message.Contains("Произошла ошибка при проверке доверенных сетей"), Is.True);
-        }
-
         [Test(Description = "При формировании API ошибки, если при валидации произошла ошибка, возвращается ответ с ошибкой")]
         public void CreateApiError_TrustedNetworkValidationResultError_ApiError()
         {

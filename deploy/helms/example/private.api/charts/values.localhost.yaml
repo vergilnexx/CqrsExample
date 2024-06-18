@@ -1,0 +1,49 @@
+ingress:
+  host: localhost
+  
+replicaCount: 1
+
+image:
+  tag: "latest"
+  repository: "example_private_api"
+  
+resources:
+  limits:
+    cpu: 0.5
+    memory: 1Gi
+  requests:
+    cpu: 0.05
+    memory: 100Mi
+
+deploy:
+  elastic:
+    apm:
+      server: "http://192.168.34.111:8200"
+      agent:
+        volumes: "/host_mnt/c/work/meta/services/src/Helpers/ElasticApmAgent"
+  http:
+    path: "/"
+    port: "5100"
+
+settings:
+  database:
+    connection:
+      example: "Host=host.docker.internal;Port=5432;Database=meta-example;Username=meta;Password=meta;Include Error Detail=True"
+      
+  locations:
+    api:
+      baseUrl: "http://host.docker.internal:5100"
+  
+  features:
+    authorization:
+      trustedNetworks: "::1/128; 127.0.0.0/8; 192.168.0.0/16"
+    logging:
+      serilog:
+        minimumLevel: "Debug"
+    elastic:
+      nodes: "http://host.docker.internal:9200"
+      
+  clients:
+    weatherForecast:
+      api:
+        baseUrl: "http://host.docker.internal:5102"

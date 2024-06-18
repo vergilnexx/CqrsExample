@@ -4,6 +4,7 @@ using Meta.Common.Contracts.Exceptions.Common;
 using Meta.Common.Hosts.RabbitMq.Registrar.Client;
 using Meta.Common.Infrastructures.DataAccess.Repositories;
 using Meta.Common.Test.Infrastructure;
+using Meta.Example.Clients.WeatherForecast;
 using Meta.Example.Contracts.Forecast.Requests;
 using Meta.Example.Contracts.Forecast.Response;
 using Meta.Example.Domain;
@@ -17,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
+using static Meta.Example.Private.Hosts.Grpc.Protos.WeatherForecastService;
 
 namespace Meta.Example.Tests.IntegrationTests.PublicApi
 {
@@ -27,6 +29,7 @@ namespace Meta.Example.Tests.IntegrationTests.PublicApi
     {
         private Mock<IDateTimeProvider> _dateTimeProvider;
         private Mock<IRabbitMqClient> _rabbitMqClient;
+        private Mock<IWeatherForecastServiceClient> _weatherForecastServiceClient;
 
         [SetUp]
         public void Setup()
@@ -39,8 +42,10 @@ namespace Meta.Example.Tests.IntegrationTests.PublicApi
             _services.AddScoped<IConfiguration>(_ => configuration);
             _dateTimeProvider = new Mock<IDateTimeProvider>();
             _rabbitMqClient = new Mock<IRabbitMqClient>();
+            _weatherForecastServiceClient = new Mock<IWeatherForecastServiceClient>();
             _services.AddScoped(_ => _dateTimeProvider.Object);
             _services.AddScoped(_ => _rabbitMqClient.Object);
+            _services.AddScoped(_ => _weatherForecastServiceClient.Object);
             _services
                 .AddHandlers(currentAssembly)
                 .AddServices()
@@ -140,8 +145,8 @@ namespace Meta.Example.Tests.IntegrationTests.PublicApi
             Assert.That((int?)okResult?.Value, Is.EqualTo(1));
         }
 
-        [Test(Description = "При вызове метода добавления данных, должен возвращаться идентификатор")]
-        public async Task Add_AddExistedDate_Exception()
+        [Test(Description = "При вызове метода добавления данных, когда, уже прогноза на дату добавлен, то прошлый прогноз удаляется")]
+        public async Task Add_AddExistedDate_DeleteExisted()
         {
             // Arrange
             var mediatr = _serviceProvider.GetRequiredService<IMediator>();
@@ -151,12 +156,10 @@ namespace Meta.Example.Tests.IntegrationTests.PublicApi
             await repository.AddAsync(new WeatherForecast() { Date = date }, CancellationToken.None);
 
             // Act
-            var exception = Assert.ThrowsAsync<ReadableException>(async () =>
-                                await controller.Add(new WeatherForecastData() { Date = date }, CancellationToken.None));
+            await controller.Add(new WeatherForecastData() { Date = date }, CancellationToken.None);
 
             // Assert
-            Assert.That(exception, Is.Not.Null);
-            Assert.That(exception.Message, Is.EqualTo($"Предсказание погоды для даты '{date}' уже существует"));
+            _weatherForecastServiceClient.Verify(c => c.DeleteAsync(date, CancellationToken.None), Times.Once);
         }
     }
 }

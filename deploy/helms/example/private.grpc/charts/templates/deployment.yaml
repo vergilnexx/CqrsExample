@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: IfNotPresent
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 5103
+            timeoutSeconds: 5
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 5103
+            timeoutSeconds: 5
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          ports:
+            - containerPort: {{ .Values.deploy.http2.port }}
+          env:
+            - name: "ASPNETCORE_ENVIRONMENT"
+              value: "Release"
+            - name: "ELASTIC_APM_SERVICE_NAME"
+              value: "{{ .Chart.Name }}"
+            - name: "DOTNET_STARTUP_HOOKS"
+              value: "/app/ElasticApmAgent/ElasticApmAgentStartupHook.dll"
+            - name: "ELASTIC_APM_SERVER_URL"
+              value: {{ .Values.deploy.elastic.apm.server }}
+          volumeMounts:
+            - name: elastic-apm-agent-hook
+              mountPath: /app/ElasticApmAgent
+              readOnly: true
+            - name: appsettings
+              mountPath: /app/appsettings.json
+              subPath: appsettings.json
+      volumes:
+        - name: elastic-apm-agent-hook
+          hostPath:
+            path: {{ .Values.deploy.elastic.apm.agent.volumes }}
+            type: Directory
+        - name: appsettings
+          configMap:
+            name: "{{ .Release.Name }}"
