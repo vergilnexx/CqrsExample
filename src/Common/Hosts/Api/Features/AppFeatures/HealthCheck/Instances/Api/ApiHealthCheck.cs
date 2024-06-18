@@ -13,6 +13,7 @@ namespace Meta.Common.Hosts.Api.Features.AppFeatures.HealthCheck.Instances.Api
     /// <param name="_configuration">Конфигурация.</param>
     /// <param name="_httpClientFactory">Фабрика клиентов HTTP.</param>
     /// <param name="_options">Настройки.</param>
+    /// <param name="_logger">Логгер.</param>
     public class ApiHealthCheck(IConfiguration _configuration, IHttpClientFactory _httpClientFactory, ApiHealthCheckOptions _options, ILogger<ApiHealthCheck> _logger) : IHealthCheck
     {
         /// <summary>
@@ -54,7 +55,7 @@ namespace Meta.Common.Hosts.Api.Features.AppFeatures.HealthCheck.Instances.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Произошла ошибка при проверке работоспособности сервиса по URL: {url}", url);
+                _logger.LogError(ex, "Произошла ошибка при проверке работоспособности сервиса по URL: {Url}", url);
             }
 
             if (response?.IsSuccessStatusCode == true)
