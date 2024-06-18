@@ -7,7 +7,7 @@
 configmap.yaml
 
 # SonarQube files
-.sonarqube/*
+.sonarqube/
 
 # Compiled Object files
 *.slo
