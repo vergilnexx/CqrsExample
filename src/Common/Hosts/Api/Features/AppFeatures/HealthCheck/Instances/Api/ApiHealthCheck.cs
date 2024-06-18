@@ -13,7 +13,7 @@ namespace Meta.Common.Hosts.Api.Features.AppFeatures.HealthCheck.Instances.Api
     /// <param name="_configuration">Конфигурация.</param>
     /// <param name="_httpClientFactory">Фабрика клиентов HTTP.</param>
     /// <param name="_options">Настройки.</param>
-    internal class ApiHealthCheck(IConfiguration _configuration, IHttpClientFactory _httpClientFactory, ApiHealthCheckOptions _options, ILogger<ApiHealthCheck> _logger) : IHealthCheck
+    public class ApiHealthCheck(IConfiguration _configuration, IHttpClientFactory _httpClientFactory, ApiHealthCheckOptions _options, ILogger<ApiHealthCheck> _logger) : IHealthCheck
     {
         /// <summary>
         /// Проверка на работоспособность.

@@ -5,7 +5,7 @@ namespace Meta.Common.Hosts.Api.Features.AppFeatures.HealthCheck.Instances.Api
     /// <summary>
     /// Настройки проверки работоспособности API.
     /// </summary>
-    internal class ApiHealthCheckOptions
+    public class ApiHealthCheckOptions
     {
         /// <summary>
         /// Наименование.
